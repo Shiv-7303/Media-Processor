@@ -8,196 +8,224 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Reset & Base ───────────────────────────────── */
+    /* ── Reset & base ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #f7f6f2;
-      --surface:   #ffffff;
-      --border:    #e4e2dc;
-      --accent:    #2563eb;
-      --accent-h:  #1d4ed8;
-      --text:      #1c1b18;
-      --muted:     #78756e;
-      --success:   #16a34a;
-      --error-bg:  #fff5f5;
-      --error-br:  #fca5a5;
-      --error-txt: #b91c1c;
+      --bg:        #F7F5F0;
+      --surface:   #FFFFFF;
+      --border:    #E4E0D8;
+      --accent:    #2563EB;
+      --accent-dk: #1D4ED8;
+      --success:   #16A34A;
+      --danger:    #DC2626;
+      --text-1:    #111110;
+      --text-2:    #6B6860;
+      --text-3:    #A09D97;
       --radius:    10px;
-      --shadow:    0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.07);
+      --shadow:    0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
     }
 
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
-      color: var(--text);
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      color: var(--text-1);
     }
 
-    /* ── Card ───────────────────────────────────────── */
+    /* ── Header ─────────────────────────────────── */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 4px 12px 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+
+    .header-badge span { font-size: 14px; }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      color: var(--text-1);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-2);
+    }
+
+    /* ── Card ───────────────────────────────────── */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 36px 32px 32px;
+      padding: 28px;
       width: 100%;
-      max-width: 520px;
+      max-width: 500px;
       box-shadow: var(--shadow);
     }
 
-    /* ── Header ─────────────────────────────────────── */
-    .header { margin-bottom: 28px; }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 1.15rem;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .logo-icon {
-      width: 28px; height: 28px;
-      background: var(--accent);
-      border-radius: 7px;
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: 13px;
-    }
-
-    .header p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* ── Form ───────────────────────────────────────── */
+    /* ── Form elements ──────────────────────────── */
     .field { margin-bottom: 16px; }
 
     label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--muted);
+      letter-spacing: .04em;
       text-transform: uppercase;
-      letter-spacing: .06em;
+      color: var(--text-2);
       margin-bottom: 6px;
     }
 
-    input[type="text"], select {
+    input[type="text"],
+    select {
       width: 100%;
-      padding: 10px 13px;
-      font-family: inherit;
-      font-size: 0.93rem;
-      color: var(--text);
+      padding: 10px 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-1);
       background: var(--bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius);
       outline: none;
-      transition: border-color .18s, background .18s;
+      transition: border-color .15s, box-shadow .15s;
       appearance: none;
     }
 
-    input[type="text"]::placeholder { color: #b5b2aa; }
+    input[type="text"]::placeholder { color: var(--text-3); }
 
-    input[type="text"]:focus, select:focus {
+    input[type="text"]:focus,
+    select:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.1);
       background: #fff;
     }
 
+    /* Custom select arrow */
     .select-wrap { position: relative; }
     .select-wrap::after {
       content: "▾";
       position: absolute;
-      right: 13px; top: 50%;
+      right: 12px;
+      top: 50%;
       transform: translateY(-50%);
-      color: var(--muted);
+      color: var(--text-3);
       pointer-events: none;
       font-size: 12px;
     }
 
-    /* ── Operation pills ────────────────────────────── */
-    .ops {
-      display: flex;
+    /* ── Operation pills ────────────────────────── */
+    .op-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-top: 6px;
+      margin-bottom: 20px;
     }
 
-    .op-pill {
-      flex: 1;
-      padding: 9px 4px;
+    .op-pill input[type="radio"] { display: none; }
+
+    .op-pill label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 8px;
+      background: var(--bg);
       border: 1.5px solid var(--border);
       border-radius: var(--radius);
-      background: var(--bg);
-      font-family: inherit;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--muted);
       cursor: pointer;
-      text-align: center;
-      transition: all .18s;
+      transition: all .15s;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 500;
     }
 
-    .op-pill:hover { border-color: var(--accent); color: var(--accent); background: #eff6ff; }
+    .op-pill label .icon { font-size: 18px; }
 
-    .op-pill.active {
+    .op-pill input:checked + label {
       border-color: var(--accent);
-      background: #eff6ff;
+      background: #EFF6FF;
       color: var(--accent);
-      font-weight: 600;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.08);
     }
 
-    .op-pill .pill-icon { display: block; font-size: 18px; margin-bottom: 3px; }
+    .op-pill label:hover { border-color: #A5B4FC; }
 
-    /* ── Submit ─────────────────────────────────────── */
+    /* ── Submit button ──────────────────────────── */
     .btn {
       width: 100%;
-      margin-top: 20px;
-      padding: 12px;
+      padding: 11px;
       background: var(--accent);
       color: #fff;
       border: none;
       border-radius: var(--radius);
-      font-family: inherit;
-      font-size: 0.93rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background .18s, transform .12s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      transition: background .15s, transform .1s;
+      letter-spacing: .01em;
     }
 
-    .btn:hover:not(:disabled) { background: var(--accent-h); transform: translateY(-1px); }
-    .btn:active:not(:disabled) { transform: translateY(0); }
-    .btn:disabled { background: #93c5fd; cursor: not-allowed; transform: none; }
+    .btn:hover:not(:disabled) {
+      background: var(--accent-dk);
+      transform: translateY(-1px);
+    }
 
-    /* ── Divider ─────────────────────────────────────── */
+    .btn:active:not(:disabled) { transform: translateY(0); }
+
+    .btn:disabled {
+      background: #93C5FD;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Divider ────────────────────────────────── */
     .divider {
       height: 1px;
       background: var(--border);
       margin: 24px 0;
     }
 
-    /* ── Spinner ─────────────────────────────────────── */
+    /* ── Spinner ────────────────────────────────── */
     .spinner-wrap {
       display: none;
       align-items: center;
       gap: 12px;
-      color: var(--muted);
-      font-size: 0.88rem;
+      padding: 14px;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: var(--radius);
     }
 
     .spinner {
-      width: 20px; height: 20px;
-      border: 2.5px solid var(--border);
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid #BFDBFE;
       border-top-color: var(--accent);
       border-radius: 50%;
       animation: spin .7s linear infinite;
@@ -206,38 +234,58 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Result ─────────────────────────────────────── */
-    .result-wrap { display: none; }
+    .spinner-text {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
 
-    .result-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.78rem;
+    /* ── Error ──────────────────────────────────── */
+    .error-box {
+      display: none;
+      padding: 12px 14px;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      color: var(--danger);
+      font-weight: 500;
+    }
+
+    /* ── Result ─────────────────────────────────── */
+    .result-box { display: none; }
+
+    .result-label {
+      font-size: 12px;
       font-weight: 600;
-      color: var(--success);
+      letter-spacing: .04em;
       text-transform: uppercase;
-      letter-spacing: .07em;
+      color: var(--success);
       margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .result-tag::before {
+    .result-label::before {
       content: "";
-      width: 6px; height: 6px;
-      border-radius: 50%;
+      width: 6px;
+      height: 6px;
       background: var(--success);
+      border-radius: 50%;
     }
 
-    .result-wrap img,
-    .result-wrap video,
-    .result-wrap audio {
+    .result-media img,
+    .result-media video,
+    .result-media audio {
       width: 100%;
       border-radius: var(--radius);
       border: 1px solid var(--border);
+      background: var(--bg);
       display: block;
     }
 
-    .result-wrap audio { padding: 4px 0; }
+    .result-media audio { padding: 8px 0; }
 
     .download-btn {
       display: inline-flex;
@@ -245,154 +293,143 @@
       gap: 6px;
       margin-top: 12px;
       padding: 8px 16px;
-      background: var(--bg);
+      background: var(--surface);
       border: 1.5px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-family: inherit;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.82rem;
       font-weight: 600;
+      color: var(--text-1);
       text-decoration: none;
-      transition: all .18s;
+      transition: border-color .15s, background .15s;
     }
 
     .download-btn:hover {
       border-color: var(--accent);
+      background: #EFF6FF;
       color: var(--accent);
-      background: #eff6ff;
     }
 
-    /* ── Error ──────────────────────────────────────── */
-    .error-wrap {
-      display: none;
-      background: var(--error-bg);
-      border: 1px solid var(--error-br);
-      border-radius: var(--radius);
-      padding: 12px 14px;
-      font-size: 0.86rem;
-      color: var(--error-txt);
-      line-height: 1.5;
-    }
-
-    /* ── Meta info ──────────────────────────────────── */
-    .meta {
-      margin-top: 14px;
-      font-size: 0.78rem;
-      color: var(--muted);
+    /* ── Footer ─────────────────────────────────── */
+    .footer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--text-3);
       font-family: 'DM Mono', monospace;
     }
   </style>
 </head>
 <body>
 
-<div class="card">
-
   <!-- Header -->
   <div class="header">
-    <div class="logo">
-      <div class="logo-icon">▶</div>
-      Media Processor
+    <div class="header-badge"><span>🎬</span> FFmpeg Powered</div>
+    <h1>Media Processor</h1>
+    <p class="subtitle">Paste a video URL and pick what to do with it.</p>
+  </div>
+
+  <!-- Card -->
+  <div class="card">
+
+    <!-- URL Input -->
+    <div class="field">
+      <label for="urlInput">Video URL</label>
+      <input
+        type="text"
+        id="urlInput"
+        placeholder="https://example.com/video.mp4"
+      />
     </div>
-    <p>Paste a video URL, pick an operation, get the result.</p>
-  </div>
 
-  <!-- URL Input -->
-  <div class="field">
-    <label>Video URL</label>
-    <input type="text" id="urlInput" placeholder="https://example.com/video.mp4" />
-  </div>
-
-  <!-- Operation Pills -->
-  <div class="field">
-    <label>Operation</label>
-    <div class="ops">
-      <button class="op-pill active" data-op="thumbnail" onclick="selectOp(this)">
-        <span class="pill-icon">🖼</span>Thumbnail
-      </button>
-      <button class="op-pill" data-op="compress" onclick="selectOp(this)">
-        <span class="pill-icon">🗜</span>Compress
-      </button>
-      <button class="op-pill" data-op="extract_audio" onclick="selectOp(this)">
-        <span class="pill-icon">🎵</span>Audio
-      </button>
+    <!-- Operation selector pills -->
+    <div class="field">
+      <label>Operation</label>
+      <div class="op-group">
+        <div class="op-pill">
+          <input type="radio" name="op" id="op-thumb" value="thumbnail" checked />
+          <label for="op-thumb">
+            <span class="icon">🖼️</span>Thumbnail
+          </label>
+        </div>
+        <div class="op-pill">
+          <input type="radio" name="op" id="op-compress" value="compress" />
+          <label for="op-compress">
+            <span class="icon">📦</span>Compress
+          </label>
+        </div>
+        <div class="op-pill">
+          <input type="radio" name="op" id="op-audio" value="extract_audio" />
+          <label for="op-audio">
+            <span class="icon">🎵</span>Extract Audio
+          </label>
+        </div>
+      </div>
     </div>
+
+    <!-- Submit -->
+    <button class="btn" id="submitBtn" onclick="processMedia()">Process</button>
+
+    <!-- Spinner -->
+    <div class="divider" id="divider" style="display:none"></div>
+    <div class="spinner-wrap" id="spinner">
+      <div class="spinner"></div>
+      <span class="spinner-text" id="spinnerText">Processing...</span>
+    </div>
+
+    <!-- Error -->
+    <div class="error-box" id="errorBox"></div>
+
+    <!-- Result -->
+    <div class="result-box" id="resultBox">
+      <div class="divider"></div>
+      <div class="result-label">Output Ready</div>
+      <div class="result-media" id="resultMedia"></div>
+      <a class="download-btn" id="downloadLink" href="#" download>
+        ↓ Download file
+      </a>
+    </div>
+
   </div>
 
-  <!-- Submit -->
-  <button class="btn" id="submitBtn" onclick="processMedia()">
-    <span id="btnText">Process</span>
-  </button>
-
-  <!-- Divider (hidden until result/error) -->
-  <div class="divider" id="divider" style="display:none"></div>
-
-  <!-- Spinner -->
-  <div class="spinner-wrap" id="spinner">
-    <div class="spinner"></div>
-    <span id="spinnerMsg">Processing...</span>
-  </div>
-
-  <!-- Error -->
-  <div class="error-wrap" id="errorBox"></div>
-
-  <!-- Result -->
-  <div class="result-wrap" id="resultBox">
-    <div class="result-tag">Done</div>
-    <div id="resultMedia"></div>
-    <a class="download-btn" id="dlBtn" href="#" download>
-      ↓ Download
-    </a>
-    <div class="meta" id="resultMeta"></div>
-  </div>
-
-</div>
+  <div class="footer">backend @ localhost:5000</div>
 
 <script>
   const BACKEND = "https://media-processor-loh6.onrender.com";
-  let selectedOp = "thumbnail";
 
-  // ── Operation pill selection ──────────────────────────
-  function selectOp(el) {
-    document.querySelectorAll(".op-pill").forEach(p => p.classList.remove("active"));
-    el.classList.add("active");
-    selectedOp = el.dataset.op;
-  }
-
-  // ── Labels per operation ──────────────────────────────
-  const opLabel = {
-    thumbnail:     "Extracting thumbnail...",
+  const spinnerLabels = {
+    thumbnail:     "Extracting frame at 2s...",
     compress:      "Compressing video...",
-    extract_audio: "Extracting audio..."
+    extract_audio: "Extracting audio track..."
   };
 
-  // ── Main: process media ───────────────────────────────
   async function processMedia() {
     const url = document.getElementById("urlInput").value.trim();
+    const op  = document.querySelector("input[name='op']:checked").value;
 
     resetUI();
 
     if (!url) { showError("Please enter a video URL."); return; }
 
-    setLoading(true, opLabel[selectedOp] || "Processing...");
+    setLoading(true, spinnerLabels[op]);
 
     try {
-      const res = await fetch(`${BACKEND}/process`, {
+      const res  = await fetch(`${BACKEND}/process`, {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ url, operation: selectedOp })
+        body:    JSON.stringify({ url, operation: op })
       });
 
       const data = await res.json();
 
       if (data.status === "success") {
-        showResult(data.output);
+        showResult(data.output, op);
       } else {
         showError(data.message || "Something went wrong.");
       }
 
     } catch (err) {
       if (err instanceof TypeError) {
-        showError("Cannot reach backend. Is it running on port 5000?");
+        showError("Cannot reach backend. Make sure it's running on port 5000.");
       } else {
         showError("Request failed: " + err.message);
       }
@@ -401,65 +438,48 @@
     }
   }
 
-  // ── Show result ───────────────────────────────────────
-  function showResult(outputPath) {
-    const fileUrl = BACKEND + outputPath;
-    const fname   = outputPath.split("/").pop();
-    let   media   = "";
-
-    if (selectedOp === "thumbnail") {
-      media = `<img src="${fileUrl}" alt="Thumbnail" />`;
-    } else if (selectedOp === "compress") {
-      media = `<video controls><source src="${fileUrl}" type="video/mp4"></video>`;
-    } else if (selectedOp === "extract_audio") {
-      media = `<audio controls><source src="${fileUrl}" type="audio/mpeg"></audio>`;
-    }
-
-    document.getElementById("resultMedia").innerHTML = media;
-    document.getElementById("dlBtn").href     = fileUrl;
-    document.getElementById("dlBtn").download = fname;
-    document.getElementById("resultMeta").textContent = fname;
-
-    show("divider");
-    show("resultBox");
-  }
-
-  // ── Show error ────────────────────────────────────────
-  function showError(msg) {
-    const box = document.getElementById("errorBox");
-    box.textContent = "⚠ " + msg;
-    show("divider");
-    show("errorBox");
-  }
-
-  // ── Loading state ─────────────────────────────────────
-  function setLoading(on, msg = "") {
-    const btn     = document.getElementById("submitBtn");
+  function setLoading(on, text = "") {
     const spinner = document.getElementById("spinner");
-    const sMsg    = document.getElementById("spinnerMsg");
-
-    btn.disabled = on;
-    document.getElementById("btnText").textContent = on ? "Processing…" : "Process";
+    const divider = document.getElementById("divider");
+    document.getElementById("submitBtn").disabled = on;
+    document.getElementById("spinnerText").textContent = text;
     spinner.style.display = on ? "flex" : "none";
-    if (on) { show("divider"); sMsg.textContent = msg; }
+    divider.style.display  = on ? "block" : "none";
   }
 
-  // ── Reset UI ──────────────────────────────────────────
+  function showError(msg) {
+    const el = document.getElementById("errorBox");
+    el.textContent = "⚠ " + msg;
+    el.style.display = "block";
+  }
+
+  function showResult(outputPath, op) {
+    const fileUrl = BACKEND + outputPath;
+    let   html    = "";
+
+    if (op === "thumbnail")     html = `<img src="${fileUrl}" alt="Thumbnail" />`;
+    if (op === "compress")      html = `<video controls><source src="${fileUrl}" type="video/mp4"></video>`;
+    if (op === "extract_audio") html = `<audio controls><source src="${fileUrl}" type="audio/mpeg"></audio>`;
+
+    document.getElementById("resultMedia").innerHTML = html;
+
+    const dl       = document.getElementById("downloadLink");
+    dl.href        = fileUrl;
+    dl.download    = outputPath.split("/").pop();
+
+    document.getElementById("resultBox").style.display = "block";
+  }
+
   function resetUI() {
-    ["divider","spinner","errorBox","resultBox"].forEach(id => {
-      document.getElementById(id).style.display = "none";
-    });
+    document.getElementById("errorBox").style.display  = "none";
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("divider").style.display   = "none";
+    document.getElementById("spinner").style.display   = "none";
   }
 
-  function show(id) {
-    document.getElementById(id).style.display = "block";
-  }
-
-  // ── Enter key support ─────────────────────────────────
-  document.getElementById("urlInput").addEventListener("keydown", e => {
-    if (e.key === "Enter") processMedia();
-  });
+  // Enter key submits
+  document.getElementById("urlInput")
+    .addEventListener("keydown", e => { if (e.key === "Enter") processMedia(); });
 </script>
-
 </body>
-</html>         
+</html>
